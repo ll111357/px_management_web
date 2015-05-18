@@ -102,8 +102,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<th class="td_right">选择视频</th>
 				<td style="text-align: left;">
-				<input type="text" name="videoYunId" id="videoYunId" value="${user.videoYunId }"/>
-				<button onclick="chooseVideoYun()" class="btn btn-success">
+				<input type="text" name="videoYunName" id="videoYunName" value=""/>
+				<input type="hidden" name="videoYunId" id="videoYunId" value="${user.videoYunId }"/>
+				<button onclick="videoYunModal()" class="btn btn-success">
 					<i class="icon-ok icon-white"></i> 选择视频
 				</button>
 				</td>
@@ -165,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 	<!-- 模态框（Modal） -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+	<div class="modal fade" id="yunPageModal" tabindex="-1" role="dialog" 
 	   	aria-labelledby="myModalLabel" aria-hidden="true">
 	   <div class="modal-dialog">
 	      <div class="modal-content">
@@ -182,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           	<table class="table table-bordered table-hover">
 					<thead>
 						<tr style="background-color: #dff0d8">
-							<th width="20"><input type="checkbox" id="firstCheckbox"/></th>
+							<th width="20"><input type="checkbox" id="firstCheckbox" disabled/></th>
 							<th>编号</th>
 							<th>名称</th>
 							<th>视频VID</th>
@@ -193,16 +194,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</thead>
 					<c:forEach items="${page.list }" var="u">
 						<tr >
-						   <td><input type="checkbox" name="ids" value="${u.id }"/></td>
+						   <td><input type="checkbox" name="ids" value="${u.id }" onclick="singleClick(this)"/></td>
 						   <td>&nbsp;${u.id }</td>
 						   <td>&nbsp;${u.name }</td>
 						   <td>&nbsp;${u.vid }</td>
 						   <td>&nbsp;${u.deleteFlag }</td>
 						   <td>&nbsp;${u.createId }</td>
 						   <td>&nbsp;${u.createDate }</td>
-						   <td>
-						      <a href="localhost:8080/px_management_web/boss/product/video/edit?id=${u.id}">编辑</a>
-						   </td>
 					    </tr>
 					</c:forEach>
 					<tr><td colspan="16" style="text-align:center;"><%@ include file="../../common/pager.jsp"%></td>
@@ -213,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <button type="button" class="btn btn-default" 
 	               data-dismiss="modal">关闭
 	            </button>
-	            <button type="button" class="btn btn-primary">
+	            <button type="button" id="modalConfirm" class="btn btn-primary" onclick="chooseYun()">
 	               	确认
 	            </button>
 	         </div>
@@ -221,8 +219,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div><!-- /.modal -->
 </body>
 <script type="text/javascript">
-function chooseVideoYun(){
-	
+function videoYunModal(){
+	$('#yunPageModal').modal('show');
 }
+
+function chooseYun(){
+ 	$('#videoYunName').val($('input[name="ids"]:checked').parent().next().next().text());
+ 	$('#yunPageModal').modal('hide');
+}
+
+function singleClick(obj){
+	$("input[name='ids']").each(function(){
+		$(this).attr("checked",false);
+	});
+	obj.checked=true;
+	$('#videoYunId').val($(obj).val());
+}
+
 </script>
 </html>

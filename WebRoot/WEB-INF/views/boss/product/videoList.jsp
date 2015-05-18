@@ -61,7 +61,7 @@
 			   <td>&nbsp;${u.createId }</td>
 			   <td>&nbsp;${u.createDate }</td>
 			   <td>
-			      <a href="localhost:8080/px_management_web/boss/product/video/edit?id=${u.id}">编辑</a>
+			      <a href="http://localhost:8080/px_management_web/boss/product/video/edit?id=${u.id}">编辑</a>
 			   </td>
 		    </tr>
 		</c:forEach>

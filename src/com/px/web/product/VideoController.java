@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.px.common.entity.PageModel;
 import com.px.entity.Video;
 import com.px.entity.VideoType;
+import com.px.entity.VideoYunData;
 import com.px.service.VideoService;
 import com.px.service.VideoTypeService;
 
@@ -67,7 +68,10 @@ public class VideoController {
 
 		 PageModel<VideoType> page = videoTypeService.queryForPage("", "", 1, 20);
 		 model.addAttribute("videoTypeList",page.getList());
-		
+		 
+		 PageModel<VideoYunData> yunPage = videoService.queryVideoYunPage(new VideoYunData(),1,20);
+		 model.addAttribute("page",yunPage);
+		 
 		 return "boss/product/videoEdit";
 	}
 }

@@ -7,6 +7,7 @@ import com.px.common.entity.PageModel;
 import com.px.common.service.CommonService;
 import com.px.dao.VideoDao;
 import com.px.entity.Video;
+import com.px.entity.VideoYunData;
 
 @Service
 public class VideoService extends CommonService<Video,String>{
@@ -20,5 +21,10 @@ public class VideoService extends CommonService<Video,String>{
 	
 	public PageModel<Video> queryForPage(Video queryVideo,Integer currentPage,Integer pageSize){
 		return this.videoDao.queryForPage(queryVideo,currentPage, pageSize);
+	}
+	
+	public PageModel<VideoYunData> queryVideoYunPage(
+			VideoYunData queryVideoYun, Integer currentPage, Integer pageSize) {
+		return this.videoDao.queryVideoYunPage(queryVideoYun, currentPage, pageSize);
 	}
 }

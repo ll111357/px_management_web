@@ -9,8 +9,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <%@ include file="../../common/common.jsp"%>
 <%@ include file="../../common/common_html_validator.jsp"%>
-<script type="text/javascript" src="../../../../ueditor/editor_config.js"></script>
-<script type="text/javascript" src="../../../../ueditor/editor_all.js"></script>
 <title>后台添加视频</title>
 <style>
 	.td_right{text-align: right;}
@@ -25,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td colspan="2" style="background-color: #dff0d8;text-align: center;">
 					<c:choose>
-					  <c:when test="${id == null || id == '' }">
+					  <c:when test="${video.id == null || video.id == '' }">
 					    <strong>视频新增</strong>
 					  </c:when>
 					  <c:otherwise>
@@ -37,13 +35,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			<tr style="display:none;">
 				<th>id</th>
-				<td><input type="hidden" name="id" value="${id }" /></td>
+				<td><input type="hidden" name="id" value="${video.id }" /></td>
 			</tr>
 			<tr>
 				<th class="td_right">视频名称</th>
 				<td style="text-align: left;">
 					<input type="text" name="name" id="name" 
-					  <c:if test="${id != null && id != '' }">
+					  <c:if test="${video.id != null && video.id != '' }">
 					    readonly="false" 
 					  </c:if>		
 					  value="${video.name }"		
@@ -70,8 +68,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td style="text-align: left;">
 					<select id="gradeId" name="gradeId" data-rule-required="true" data-msg-required="请选择年级" >
 					  <option value="">--请选择--</option>
-					  <option value="">初一</option>
-					  <option value="">初二</option>
+					  <option <c:if test="${'一年级' == video.gradeId }">selected="true"</c:if> value="一年级">一年级</option>
+					  <option <c:if test="${'二年级' == video.gradeId }">selected="true"</c:if> value="二年级">二年级</option>
+					  <option <c:if test="${'三年级' == video.gradeId }">selected="true"</c:if> value="三年级">三年级</option>
+					  <option <c:if test="${'四年级' == video.gradeId }">selected="true"</c:if> value="四年级">四年级</option>
+					  <option <c:if test="${'五年级' == video.gradeId }">selected="true"</c:if> value="五年级">五年级</option>
+					  <option <c:if test="${'六年级' == video.gradeId }">selected="true"</c:if> value="六年级">六年级</option>
+					  <option <c:if test="${'初一' == video.gradeId }">selected="true"</c:if> value="初一">初一</option>
+					  <option <c:if test="${'初二' == video.gradeId }">selected="true"</c:if> value="初二">初二</option>
+					  <option <c:if test="${'初三' == video.gradeId }">selected="true"</c:if> value="初三">初三</option>
+					  <option <c:if test="${'高一' == video.gradeId }">selected="true"</c:if> value="高一">高一</option>
+					  <option <c:if test="${'高二' == video.gradeId }">selected="true"</c:if> value="高二">高二</option>
+					  <option <c:if test="${'高三' == video.gradeId }">selected="true"</c:if> value="高三">高三</option>
 					</select>
 				</td>
 			</tr>
@@ -80,11 +88,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td style="text-align: left;">
 					<select id="topCourseId" name="topCourseId" data-rule-required="true" data-msg-required="请选择科目" >
 					  <option value="">--请选择--</option>
-					  <option value="">语文</option>
-					  <option value="">数学</option>
-					  <option value="">英语</option>
-					  <option value="">化学</option>
-					  <option value="">物理</option>
+					  <option <c:if test="${'语文' == video.topCourseId }">selected="true"</c:if> value="语文">语文</option>
+					  <option <c:if test="${'数学' == video.topCourseId }">selected="true"</c:if> value="数学">数学</option>
+					  <option <c:if test="${'英语' == video.topCourseId }">selected="true"</c:if> value="英语">英语</option>
+					  <option <c:if test="${'化学' == video.topCourseId }">selected="true"</c:if> value="化学">化学</option>
+					  <option <c:if test="${'物理' == video.topCourseId }">selected="true"</c:if> value="物理">物理</option>
+					  <option <c:if test="${'历史' == video.topCourseId }">selected="true"</c:if> value="历史">历史</option>
+					  <option <c:if test="${'政治' == video.topCourseId }">selected="true"</c:if> value="政治">政治</option>
+					  <option <c:if test="${'地理' == video.topCourseId }">selected="true"</c:if> value="地理">地理</option>
+					  <option <c:if test="${'生物' == video.topCourseId }">selected="true"</c:if> value="生物">生物</option>
 					</select>
 				</td>
 			</tr>
@@ -103,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th class="td_right">选择视频</th>
 				<td style="text-align: left;">
 				<input type="text" name="videoYunName" id="videoYunName" value=""/>
-				<input type="hidden" name="videoYunId" id="videoYunId" value="${user.videoYunId }"/>
+				<input type="hidden" name="videoYunId" id="videoYunId" value="${video.videoYunId }"/>
 				<button onclick="videoYunModal()" class="btn btn-success">
 					<i class="icon-ok icon-white"></i> 选择视频
 				</button>
@@ -125,7 +137,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<th class="td_right">视频介绍</th>
 				<td style="text-align: left;">
-				<script type="text/plain" id="introduction" name="introduction" style="width:400px" ></script>
+				<script type="text/plain" id="introduction" name="introduction">
+					视频简介
+				</script>
 				</td>
 			</tr>
 			<tr>
@@ -144,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr >
 				<td colspan="2" style="text-align: center;">
 				   <c:choose>
-				     <c:when test="${id == null || id == '' }">
+				     <c:when test="${video.id == null || video.id == '' }">
 				        <button method="save" class="btn btn-success">
 							<i class="icon-ok icon-white"></i> 新增
 						</button>

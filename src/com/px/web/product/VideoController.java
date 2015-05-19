@@ -64,14 +64,19 @@ public class VideoController {
 	}
 	
 	@RequestMapping("/edit")
-	public String editVideoType(Model model){
+	public String editVideoType(Video video,Model model){
 
-		 PageModel<VideoType> page = videoTypeService.queryForPage("", "", 1, 20);
-		 model.addAttribute("videoTypeList",page.getList());
+		if(StringUtils.isNoneBlank(video.getId())){
+			 PageModel<Video> page  = videoService.queryForPage(video, 1, 20);
+			 model.addAttribute("video",page.getList().get(0));
+		}
+		
+		PageModel<VideoType> page = videoTypeService.queryForPage("", "", 1, 20);
+		model.addAttribute("videoTypeList",page.getList());
 		 
-		 PageModel<VideoYunData> yunPage = videoService.queryVideoYunPage(new VideoYunData(),1,20);
-		 model.addAttribute("page",yunPage);
+		PageModel<VideoYunData> yunPage = videoService.queryVideoYunPage(new VideoYunData(),1,20);
+		model.addAttribute("page",yunPage);
 		 
-		 return "boss/product/videoEdit";
+		return "boss/product/videoEdit";
 	}
 }

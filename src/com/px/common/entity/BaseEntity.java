@@ -11,6 +11,9 @@ public class BaseEntity extends IdEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1024354665982751553L;
 	
+	public static final String DELETE_FLAG_DELETED = "-1";
+	public static final String DELETE_FLAG_NORMAL = "0";
+	
 	/**
 	 * “创建日期”属性名称
 	 */
@@ -52,7 +55,7 @@ public class BaseEntity extends IdEntity implements Serializable {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	@Column(name = "delete_flag",length=1)
+	@Column(name = "delete_flag",length=2)
 	public String getDeleteFlag() {
 		return deleteFlag;
 	}

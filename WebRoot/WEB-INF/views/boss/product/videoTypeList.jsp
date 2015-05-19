@@ -41,7 +41,7 @@
 			   <td><input type="checkbox" name="ids" value="${u.id }"/></td>
 			   <td>&nbsp;${u.name }</td>
 			   <td>
-			      <a href="localhost:8080/px_management_web/boss/product/videoType/edit?id=${u.id}">编辑</a>
+			      <a href="http://localhost:8080/px_management_web/boss/product/videoType/edit?id=${u.id}">编辑</a>
 			   </td>
 		    </tr>
 		</c:forEach>
@@ -51,7 +51,7 @@
 </form>
  <script type="text/javascript">
 	function toAdd(){
-		var _url = "localhost:8080/px_management_web/boss/product/videoType/edit";
+		var _url = "http://localhost:8080/px_management_web/boss/product/videoType/edit";
         var _form = $("#form");
 		_form.attr("action",_url);
 		_form.submit();

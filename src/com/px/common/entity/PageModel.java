@@ -14,11 +14,11 @@ public class PageModel<E> implements Serializable{
 
 	private int totalCount; //总记录数
 	
-	private int pageSize; //每页显示的数量
+	private int pageSize = 10; //每页显示的数量
 	
 	private int totalPage; //总页数
 	
-	private int currentPage; //当前页数
+	private int currentPage = 1; //当前页数
 	
 	private List<E> list; //分页集合列表
 

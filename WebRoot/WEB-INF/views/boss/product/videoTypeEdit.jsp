@@ -41,7 +41,7 @@
 			      <tr>
 					<th class="td_right">类型名称</th>
 					<td style="text-align: left;">
-					<input type="text" name="name" data-rule="类型名称:required;password;length[1~64];" id="name" />
+					<input type="text" name="name" data-rule="类型名称:required;name;length[1~64];" id="name" />
 					</td>
 				  </tr>
 			   </c:when>
@@ -49,7 +49,7 @@
 			      <tr>
 					<th class="td_right">类型名称</th>
 					<td style="text-align: left;">
-					  <input type="text" name="name" data-rule="类型名称:password;length[1~64];"  id="name" />
+					  <input type="text" name="name" data-rule="类型名称:name;length[1~64];"  id="name" />
 					   <br>(不输入表示不修改)
 					</td>
 				  </tr>

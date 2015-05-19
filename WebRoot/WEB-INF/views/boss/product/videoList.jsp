@@ -50,7 +50,7 @@
 			<tr >
 			   <td><input type="checkbox" name="ids" value="${u.id }"/></td>
 			   <td>&nbsp;${u.id }</td>
-			   <td>&nbsp;${u.videoTypeId }</td>
+			   <td>&nbsp;${u.videoType.name }</td>
 			   <td>&nbsp;${u.name }</td>
 			   <td>&nbsp;${u.videoYunId }</td>
 			   <td>&nbsp;${u.gradeId }</td>

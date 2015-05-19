@@ -2,6 +2,9 @@ package com.px.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.px.common.entity.BaseEntity;
@@ -30,6 +33,18 @@ public class Video extends BaseEntity {
 	private String videoYunId;//'云端视频Id'
 	private boolean isAudition;//是否支持试听（1-支持）
 	private String sorting;//视频排序
+	
+	private VideoType videoType;//关联的视频类型实体
+	//@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name="video_type_id",referencedColumnName = "id", insertable = false, updatable = false)
+	public VideoType getVideoType() {
+		return videoType;
+	}
+	public void setVideoType(VideoType videoType) {
+		this.videoType = videoType;
+	}
+	
 	
 	@Column(name = "name",length=64)
 	public String getName() {
@@ -126,7 +141,6 @@ public class Video extends BaseEntity {
 	public void setSorting(String sorting) {
 		this.sorting = sorting;
 	}
-	
 	
 	
 }

@@ -35,7 +35,7 @@ public class Video extends BaseEntity {
 	private String sorting;//视频排序
 	
 	private VideoType videoType;//关联的视频类型实体
-	//@ManyToOne(fetch=FetchType.LAZY)
+	
 	@ManyToOne
 	@JoinColumn(name="video_type_id",referencedColumnName = "id", insertable = false, updatable = false)
 	public VideoType getVideoType() {
